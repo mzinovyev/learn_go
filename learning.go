@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
+
+func before(i string) string {
+	return i
+}
 
 func main() {
 	fmt.Printf("hello world\n")
@@ -39,14 +42,14 @@ func main() {
 	//fmt.Println("sl", slice)
 	//fmt.Println("s2", slice2)
 
-	cpSlice := []string{"one", "two", "three"}
+	//cpSlice := []string{"one", "two", "three"}
 	//trgSlice := make([]string, 2)
 	//
 	//copy(trgSlice, cpSlice)
 	//fmt.Println(trgSlice)
-	myArray := [...]int{0, 1, 2, 3, 4, 5}
-	fmt.Println("myArray", myArray)
-	fmt.Println("cpSlice", cpSlice)
+	//myArray := [...]int{0, 1, 2, 3, 4, 5}
+	//fmt.Println("myArray", myArray)
+	//fmt.Println("cpSlice", cpSlice)
 
 	//iteration throw allay
 	//myArrayLen := len(myArray)
@@ -117,46 +120,152 @@ func main() {
 	//fmt.Println("m4", m4)
 
 	// SWITCHES   ------------------------
-	fmt.Println("----------------------")
-	mm22 := map[int]string{
-		0: "False", //0:"Abro-Cadabro",//
-		1: "True",
-	}
+	//	fmt.Println("----------------------")
+	//	mm22 := map[int]string{
+	//		0: "False", //0:"Abro-Cadabro",//
+	//		1: "True",
+	//	}
+	//
+	//	switch mm22[0] {
+	//	case "NULL":
+	//		println("year - NULL")
+	//	case "False":
+	//		println("year - FASLE")
+	//	case "SOME":
+	//		println("it's some...")
+	//	default:
+	//		println("Nothing (((")
+	//	}
+	//
+	//	// strings.Contains(it, "lse")
+	//	switch {
+	//	case strings.Contains(mm22[0], "als"):
+	//		println("contains 'als'")
+	//		//break
+	//		//fallthrough
+	//	case strings.Contains(mm22[0], "aaa"):
+	//		println("aaa")
+	//	case strings.Contains(mm22[0], "lse"):
+	//		println("contains 'lse'")
+	//		//fallthrough
+	//	default:
+	//		println("no subs found")
+	//	}
+	//
+	//myAnchor:
+	//	for true {
+	//		println("one")
+	//		break myAnchor
+	//		println("two")
+	//		println("three")
+	//	}
+	//	println("END")
+	//
+	//	fmt.Println(mm22)
 
-	switch mm22[0] {
-	case "NULL":
-		println("year - NULL")
-	case "False":
-		println("year - FASLE")
-	case "SOME":
-		println("it's some...")
-	default:
-		println("Nothing (((")
-	}
+	// *** FUNCTIONS ***
 
-	// strings.Contains(it, "lse")
-	switch {
-	case strings.Contains(mm22[0], "als"):
-		println("contains 'als'")
-		//break
-		//fallthrough
-	case strings.Contains(mm22[0], "aaa"):
-		println("aaa")
-	case strings.Contains(mm22[0], "lse"):
-		println("contains 'lse'")
-		//fallthrough
-	default:
-		println("no subs found")
-	}
+	//fmt.Println(before("1111"))
+	//fmt.Println(after("2222"))
+	//fmt.Println(multi())
+	//fmt.Println(rargs(1,2,3))
+	//// defer panic recover
+	//z := 1e4
+	//fmt.Println("z: ", z)
+	//fmt.Println("z/2: ", z/2)
+	//fmt.Println("---------------------------")
+	//str_1 := "first"
+	//str_2 := "second"
+	//
+	//defer
+	//	fmt.Println(str_1)
+	//
+	//panic("Before first & second")
+	//
+	//msg := recover()
+	//fmt.Println(msg)
+	//
+	//fmt.Println(str_2)
 
-myAnchor:
-	for true {
-		println("one")
-		break myAnchor
-		println("two")
-		println("three")
-	}
-	println("END")
+	//	matreshka_1()
 
-	fmt.Println(mm22)
+	// *** POINTERS ***
+	// pString  := new(string)
+	// //ps2  = new(string)
+	//var psi *int = new(int)
+	//*psi = 5
+	//
+	//fmt.Println("pString: ", *pString)
+	//fmt.Println("*psi: ", *psi)
+	//fmt.Println("psi: ", psi)
+	//
+	//psi2 := new(int)
+	//psi2 = psi
+	//*psi2 = 4
+	//
+	//fmt.Println("*psi: ", *psi)
+	//fmt.Println("psi: ", psi)
+	//
+	//x := 1.5
+	//square(&x)
+	//fmt.Println(x)
+
+}
+
+//pointer examples
+func square(x *float64) {
+	*x = *x * *x
+}
+
+// function after main
+func after(i string) (ret string) {
+	ret = i
+	return
+}
+
+// multiple results
+func multi() (one string, two string) {
+	one = "ONE"
+	two = "TWO"
+	return
+}
+
+// random args
+func rargs(args ...int) (total int) {
+	total = 0
+	for _, v := range args {
+		total += v
+	}
+	return
+}
+
+// Замыкания не понял http://golang-book.ru/chapter-07-functions.html
+
+// panic recover - print stack
+func matreshka_1() {
+	defer func() {
+		if e := recover(); e != nil {
+			fmt.Println("Exception in matreshka_1")
+			panic(e)
+		}
+	}()
+	matreshka_2()
+}
+func matreshka_2() {
+	defer func() {
+		if e := recover(); e != nil {
+			fmt.Println("Exception in matreshka_2")
+			panic(e)
+		}
+	}()
+	matreshka_3()
+}
+func matreshka_3() {
+	defer func() {
+		if e := recover(); e != nil {
+			fmt.Println("Exception in matreshka_3: ", e)
+			panic(e)
+		}
+	}()
+	panic("root error")
 }
