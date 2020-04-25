@@ -209,7 +209,90 @@ func main() {
 	//x := 1.5
 	//square(&x)
 	//fmt.Println(x)
+	// *** STRUCTURES ***
+	type FileMon struct {
+		fname   string // file name
+		fpath   string // file path
+		fsize   int    // file size
+		foffset int    // offset from the start
+	}
 
+	fm := FileMon{fname: "1.xtx", fpath: "c:/111/222", fsize: 100, foffset: 50}
+	fmt.Println(fm)
+
+	fm2 := FileMon2{"", "", 100, 50}
+	fmt.Println(fm2)
+
+	fm3 := FileMon2{"one", "two", 400, 500}
+	prns(&fm3)
+	fmt.Println(fm3.getName())
+
+	a1 := new(Android)
+	a2 := new(Android2)
+	a1.Talk()
+	a1.Person.Talk()
+	a2.Person.Talk() //a2.Talk() - dont work
+	//call interface
+	essTolk(a1)
+	// essTolk(a2) - dont work
+}
+
+// structure functions
+type FileMon2 struct {
+	fname, fpath   string // file name, file path
+	fsize, foffset int    // file size, offset from the start
+}
+
+func prns(pfm *FileMon2) {
+	pfm.fname = "nname.txt"
+}
+
+func (fm2 *FileMon2) getName() string {
+	return fm2.fname
+}
+
+// person struct
+type Person struct {
+	Name string
+}
+type Animal struct {
+	Name string
+}
+
+func (p *Animal) Talk() {
+	fmt.Println("WOw wow wow")
+}
+func (p *Person) Talk() {
+	fmt.Println("The Name: ", p.Name)
+}
+
+type Android struct {
+	Person
+	Model string
+}
+type Android2 struct {
+	Person Person
+	Model  string
+}
+
+//interfaces
+type Essence interface {
+	Talk()
+}
+
+func essTolk(ess Essence) {
+	fmt.Println("talk from interface")
+	ess.Talk()
+}
+
+type EssCommunity struct {
+	ecom []Essence
+}
+
+func (ec *EssCommunity) Talk() {
+	for _, s := range ec.ecom {
+		s.Talk()
+	}
 }
 
 //pointer examples
