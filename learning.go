@@ -210,32 +210,34 @@ func main() {
 	//square(&x)
 	//fmt.Println(x)
 	// *** STRUCTURES ***
-	type FileMon struct {
-		fname   string // file name
-		fpath   string // file path
-		fsize   int    // file size
-		foffset int    // offset from the start
-	}
-
-	fm := FileMon{fname: "1.xtx", fpath: "c:/111/222", fsize: 100, foffset: 50}
-	fmt.Println(fm)
-
-	fm2 := FileMon2{"", "", 100, 50}
-	fmt.Println(fm2)
-
-	fm3 := FileMon2{"one", "two", 400, 500}
-	prns(&fm3)
-	fmt.Println(fm3.getName())
-
-	a1 := new(Android)
-	a2 := new(Android2)
-	a1.Talk()
-	a1.Person.Talk()
-	a2.Person.Talk() //a2.Talk() - dont work
+	//type FileMon struct {
+	//	fname   string // file name
+	//	fpath   string // file path
+	//	fsize   int    // file size
+	//	foffset int    // offset from the start
+	//}
+	//
+	//fm := FileMon{fname: "1.xtx", fpath: "c:/111/222", fsize: 100, foffset: 50}
+	//fmt.Println(fm)
+	//
+	//fm2 := FileMon2{"", "", 100, 50}
+	//fmt.Println(fm2)
+	//
+	//fm3 := FileMon2{"one", "two", 400, 500}
+	//prns(&fm3)
+	//fmt.Println(fm3.getName())
+	//
+	//a1 := new(Android)
+	//a2 := new(Android2)
+	//a1.Talk()
+	//a1.Person.Talk()
+	//a2.Person.Talk() //a2.Talk() - dont work
 	//call interface
-	essTolk(a1)
+	//essTolk(a1)
 	// essTolk(a2) - dont work
 }
+
+// multithread
 
 // structure functions
 type FileMon2 struct {
