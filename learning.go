@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func before(i string) string {
@@ -235,122 +236,147 @@ func main() {
 	//call interface
 	//essTolk(a1)
 	// essTolk(a2) - dont work
+
+	// *** Go routine
+	//go f(1)
+	//fmt.Println("after f1")
+	//go f(2)
+	//fmt.Println("after f2")
+	//var input string
+	//fmt.Scanln(&input)
+	// rouitne with conclulsion with anonymous finction
+	//fmt.Println("Outside go routine.")
+	//go func() {
+	//	fmt.Println("Inside  go routine.")
+	//}()
+	//fmt.Println("Outside again.")
+	//runtime.Gosched()
+
+	PrintPack("example")
+	fmt.Println(PackVar)
 }
 
-// multithread
+func f(n int) {
+	for i := 1; i < 7; i++ {
+		fmt.Println(n, ":", i)
+		//amt := time.Duration(rand.Intn(250))
+		//time.Sleep(time.Millisecond * amt)
+		time.Sleep(10)
+	}
+}
 
 // structure functions
-type FileMon2 struct {
-	fname, fpath   string // file name, file path
-	fsize, foffset int    // file size, offset from the start
-}
-
-func prns(pfm *FileMon2) {
-	pfm.fname = "nname.txt"
-}
-
-func (fm2 *FileMon2) getName() string {
-	return fm2.fname
-}
-
-// person struct
-type Person struct {
-	Name string
-}
-type Animal struct {
-	Name string
-}
-
-func (p *Animal) Talk() {
-	fmt.Println("WOw wow wow")
-}
-func (p *Person) Talk() {
-	fmt.Println("The Name: ", p.Name)
-}
-
-type Android struct {
-	Person
-	Model string
-}
-type Android2 struct {
-	Person Person
-	Model  string
-}
-
-//interfaces
-type Essence interface {
-	Talk()
-}
-
-func essTolk(ess Essence) {
-	fmt.Println("talk from interface")
-	ess.Talk()
-}
-
-type EssCommunity struct {
-	ecom []Essence
-}
-
-func (ec *EssCommunity) Talk() {
-	for _, s := range ec.ecom {
-		s.Talk()
-	}
-}
-
-//pointer examples
-func square(x *float64) {
-	*x = *x * *x
-}
-
-// function after main
-func after(i string) (ret string) {
-	ret = i
-	return
-}
-
-// multiple results
-func multi() (one string, two string) {
-	one = "ONE"
-	two = "TWO"
-	return
-}
-
-// random args
-func rargs(args ...int) (total int) {
-	total = 0
-	for _, v := range args {
-		total += v
-	}
-	return
-}
+//type FileMon2 struct {
+//	fname, fpath   string // file name, file path
+//	fsize, foffset int    // file size, offset from the start
+//}
+//
+//func prns(pfm *FileMon2) {
+//	pfm.fname = "nname.txt"
+//}
+//
+//func (fm2 *FileMon2) getName() string {
+//	return fm2.fname
+//}
+//
+//// person struct
+//type Person struct {
+//	Name string
+//}
+//type Animal struct {
+//	Name string
+//}
+//
+//func (p *Animal) Talk() {
+//	fmt.Println("WOw wow wow")
+//}
+//func (p *Person) Talk() {
+//	fmt.Println("The Name: ", p.Name)
+//}
+//
+//type Android struct {
+//	Person
+//	Model string
+//}
+//type Android2 struct {
+//	Person Person
+//	Model  string
+//}
+//
+////interfaces
+//type Essence interface {
+//	Talk()
+//}
+//
+//func essTolk(ess Essence) {
+//	fmt.Println("talk from interface")
+//	ess.Talk()
+//}
+//
+//type EssCommunity struct {
+//	ecom []Essence
+//}
+//
+//func (ec *EssCommunity) Talk() {
+//	for _, s := range ec.ecom {
+//		s.Talk()
+//	}
+//}
+//
+////pointer examples
+//func square(x *float64) {
+//	*x = *x * *x
+//}
+//
+//// function after main
+//func after(i string) (ret string) {
+//	ret = i
+//	return
+//}
+//
+//// multiple results
+//func multi() (one string, two string) {
+//	one = "ONE"
+//	two = "TWO"
+//	return
+//}
+//
+//// random args
+//func rargs(args ...int) (total int) {
+//	total = 0
+//	for _, v := range args {
+//		total += v
+//	}
+//	return
+//}
 
 // Замыкания не понял http://golang-book.ru/chapter-07-functions.html
 
 // panic recover - print stack
-func matreshka_1() {
-	defer func() {
-		if e := recover(); e != nil {
-			fmt.Println("Exception in matreshka_1")
-			panic(e)
-		}
-	}()
-	matreshka_2()
-}
-func matreshka_2() {
-	defer func() {
-		if e := recover(); e != nil {
-			fmt.Println("Exception in matreshka_2")
-			panic(e)
-		}
-	}()
-	matreshka_3()
-}
-func matreshka_3() {
-	defer func() {
-		if e := recover(); e != nil {
-			fmt.Println("Exception in matreshka_3: ", e)
-			panic(e)
-		}
-	}()
-	panic("root error")
-}
+//func matreshka_1() {
+//	defer func() {
+//		if e := recover(); e != nil {
+//			fmt.Println("Exception in matreshka_1")
+//			panic(e)
+//		}
+//	}()
+//	matreshka_2()
+//}
+//func matreshka_2() {
+//	defer func() {
+//		if e := recover(); e != nil {
+//			fmt.Println("Exception in matreshka_2")
+//			panic(e)
+//		}
+//	}()
+//	matreshka_3()
+//}
+//func matreshka_3() {
+//	defer func() {
+//		if e := recover(); e != nil {
+//			fmt.Println("Exception in matreshka_3: ", e)
+//			panic(e)
+//		}
+//	}()
+//	panic("root error")
+//}
